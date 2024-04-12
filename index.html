@@ -43,7 +43,6 @@
 <body>
     <div id="chat-container">
         <div id="chat-history">
-            <!-- Chat messages will be displayed here -->
         </div>
         <input type="text" id="message-input" placeholder="Type your message...">
         <button id="send-button">Send</button>
@@ -55,7 +54,7 @@
         });
 
         document.getElementById("message-input").addEventListener("keyup", function(event) {
-            if (event.keyCode === 13) { // 13 is the Enter key
+            if (event.keyCode === 13) { // 13 = Enter
                 sendMessage();
             }
         });
@@ -74,7 +73,7 @@
             var messageElement = document.createElement("div");
             messageElement.innerHTML = "<strong>" + sender + ":</strong> " + message;
             chatHistory.appendChild(messageElement);
-            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to bottom
+            chatHistory.scrollTop = chatHistory.scrollHeight;
         }
     </script>
 </body>
