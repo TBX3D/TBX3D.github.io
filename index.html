@@ -1,11 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Static JSON</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chat App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        #chat-container {
+            width: 300px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        #chat-history {
+            height: 200px;
+            overflow-y: scroll;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        #message-input {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        #send-button {
+            width: 100%;
+            padding: 8px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #send-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-  
+    <div id="chat-container">
+        <div id="chat-history">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button id="send-button">Send</button>
+    </div>
+
+    <script>
+        document.getElementById("send-button").addEventListener("click", function() {
+            sendMessage();
+        });
+
+        document.getElementById("message-input").addEventListener("keyup", function(event) {
+            if (event.keyCode === 13) { // 13 is the Enter key
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            var messageInput = document.getElementById("message-input");
+            var message = messageInput.value.trim();
+            if (message !== "") {
+                appendMessage("You", message);
+                messageInput.value = "";
+            }
+        }
+
+        function appendMessage(sender, message) {
+            var chatHistory = document.getElementById("chat-history");
+            var messageElement = document.createElement("div");
+            messageElement.innerHTML = "<strong>" + sender + ":</strong> " + message;
+            chatHistory.appendChild(messageElement);
+            chatHistory.scrollTop = chatHistory.scrollHeight; // Scroll to bottom
+        }
+    </script>
 </body>
 </html>
