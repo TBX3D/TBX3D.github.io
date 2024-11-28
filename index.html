@@ -1,41 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Chat App</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="/socket.io/socket.io.js"></script> </head>
-<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greg and Devious</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
 
-  <h1 class="text-3xl font-bold text-gray-800 mb-4">Chat App</h1>
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Greg and Devious Showcase</h1>
 
-  <div id="messages" class="w-96 h-64 overflow-y-auto border border-gray-300 p-4 mb-4"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-  <input type="text" id="messageInput" class="border border-gray-300 p-2 w-96 mb-2" placeholder="Type your message...">
-  <button id="sendButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send</button>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-medium mb-4">Greg.mp4</h2>
+                <video class="w-full rounded-lg" controls>
+                    <source src="greg.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
 
+            <div class="bg-white rounded-lg shadow-md p-6 flex items-center justify-center">
+                <h2 class="text-xl font-medium mb-4 w-full text-center">Devious.png</h2>
+                <img src="devious.png" alt="Devious" class="max-w-full h-auto rounded-lg">
+            </div>
 
-  <script>
-    const socket = io(); // Connect to the server
-
-    const messagesDiv = document.getElementById('messages');
-    const messageInput = document.getElementById('messageInput');
-    const sendButton = document.getElementById('sendButton');
-
-    sendButton.addEventListener('click', () => {
-      const message = messageInput.value;
-      if (message.trim() !== '') {  // Don't send empty messages
-        socket.emit('chat message', message); // Send to server
-        messageInput.value = ''; // Clear input field
-      }
-    });
-
-    socket.on('chat message', (msg) => {
-      const messageElement = document.createElement('p');
-      messageElement.textContent = msg;
-      messagesDiv.appendChild(messageElement);
-      messagesDiv.scrollTop = messagesDiv.scrollHeight; // Auto-scroll
-    });
-  </script>
+        </div>
+    </div>
 
 </body>
 </html>
